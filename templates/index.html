@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deck & Art | Decks, Hidromassagem, Piscinas e Pergolados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    colors: {
+                        darkbg: '#0b0d0e',
+                        darkcard: '#14171a',
+                        wood: '#8b4c24',
+                        woodlight: '#d97736',
+                        aqua: '#1c7c94',
+                        aqualight: '#29a8c7',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0b0d0e; color: #f3f4f6; }
+        .glass-nav { background: rgba(11, 13, 14, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        .hero-bg {
+            background-image: url("{{ url_for('static', filename='img/10.png') }}");
+            background-size: cover;
+            background-position: center;
+        }
+        .text-box-glass {
+            background: rgba(11, 13, 14, 0.32);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            70% { transform: scale(1.25); opacity: 0; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+        .whatsapp-pulse::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background-color: #25D366;
+            animation: pulse-ring 2s infinite;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-aqua selection:text-white">
+
+    <!-- Áudio Local Oculto -->
+    <audio id="waterAudio" loop preload="auto">
+        <source src="{{ url_for('static', filename='audio.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 w-full z-50 glass-nav transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <img src="{{ url_for('static', filename='img/1.png') }}" alt="Logo Deck & Art" class="w-12 h-12 rounded-full object-cover border border-wood/50 group-hover:border-aqualight transition">
+                <div>
+                    <span class="font-extrabold text-xl tracking-wider text-white block leading-none">DECK <span class="text-woodlight">&</span> ART</span>
+                    <span class="text-[10px] tracking-[0.25em] text-aqualight uppercase font-semibold">Hidromassagem & Lazer</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#inicio" class="hover:text-aqualight transition">Início</a>
+                <a href="#servicos" class="hover:text-aqualight transition">Serviços</a>
+                <a href="#transformacao" class="hover:text-aqualight transition">Antes & Depois</a>
+                <a href="#projetos" class="hover:text-aqualight transition">Galeria</a>
+                <a href="#contato" class="px-4 py-2 rounded-full bg-wood hover:bg-woodlight text-white font-semibold transition shadow-lg shadow-wood/20">
+                    Orçamento WhatsApp
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <!-- Botão de controle de som visível na Navbar -->
+                <button onclick="toggleSoundManual(event)" id="soundToggleBtn" class="flex items-center gap-2 bg-aqua/20 border border-aqua/40 hover:bg-aqua/30 px-3.5 py-2 rounded-full text-aqualight text-xs font-semibold transition shadow-lg">
+                    <i id="soundIcon" class="fa-solid fa-volume-xmark text-gray-400"></i>
+                    <span id="soundLabel">Som: Mudo</span>
+                </button>
+
+                <a href="https://wa.me/5531987894164?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank"
+                   class="md:hidden px-3.5 py-2 rounded-full bg-[#25D366] text-gray-950 font-bold text-xs flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-20 overflow-hidden hero-bg">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-12 gap-12 items-center w-full">
+            <div class="lg:col-span-7 space-y-6 p-8 rounded-3xl text-box-glass shadow-2xl">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aqua/30 border border-aqua/50 text-aqualight text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
+                    <i class="fa-solid fa-water"></i> Conforto, Madeira & Sofisticação
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight drop-shadow-md">
+                    Transformamos o seu espaço em um <span class="text-woodlight font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">refúgio de lazer</span>.
+                </h1>
+
+                <p class="text-gray-100 text-base sm:text-lg leading-relaxed drop-shadow">
+                    Especialistas em instalação de <strong>hidromassagens, decks de madeira, piscinas e pergolados</strong>. Projetos sob medida para áreas grandes ou compactas, com acabamento impecável.
+                </p>
+
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="https://wa.me/5531987894164?text=Olá!%20Vim%20pelo%20site%20da%20Deck%20&%20Art%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank"
+                       class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-gray-950 font-bold text-sm sm:text-base transition shadow-xl">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Solicitar Orçamento
+                    </a>
+                    <a href="#projetos"
+                       class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/30 text-white font-semibold text-sm sm:text-base transition">
+                        Ver Projetos Realizados
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative p-8 rounded-3xl text-box-glass shadow-2xl text-center max-w-sm">
+                    <div class="w-40 h-40 mx-auto mb-6 flex items-center justify-center p-1 rounded-full bg-black/40 border-2 border-wood/60 shadow-xl">
+                        <img src="{{ url_for('static', filename='img/1.png') }}" alt="Deck & Art Logo" class="w-full h-full rounded-full object-contain">
+                    </div>
+                    <h2 class="text-xl font-bold text-white mb-2 drop-shadow">Lazer de verdade não depende de espaço grande</h2>
+                    <p class="text-sm text-gray-200 mb-2 drop-shadow">Adaptamos projetos completos de hidro e deck até mesmo para terraços e áreas compactas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos" class="py-24 bg-[#0e1113] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-aqualight font-semibold text-xs uppercase tracking-widest">O que fazemos</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Soluções Completas para sua Área Externa</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-darkcard rounded-2xl overflow-hidden border border-white/5 hover:border-aqua/50 transition group">
+                    <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/6.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Hidromassagens</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Instalação hidráulica, elétrica e estrutural de spas e banheiras.</p>
+                    </div>
+                </div>
+                <div class="bg-darkcard rounded-2xl overflow-hidden border border-white/5 hover:border-woodlight/50 transition group">
+                    <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/2.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Decks & Escadas</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Decks em madeira tratada de alta durabilidade.</p>
+                    </div>
+                </div>
+                <div class="bg-darkcard rounded-2xl overflow-hidden border border-white/5 hover:border-aqua/50 transition group">
+                    <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/5.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Piscinas & Duchas</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Instalação e revestimento com integração de ducha.</p>
+                    </div>
+                </div>
+                <div class="bg-darkcard rounded-2xl overflow-hidden border border-white/5 hover:border-woodlight/50 transition group">
+                    <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/8.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Pergolados</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Pergolados de madeira com cobertura em policarbonato.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANTES & DEPOIS -->
+    <section id="transformacao" class="py-24 bg-darkbg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6">
+                    <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="{{ url_for('static', filename='img/3.png') }}" alt="Antes e Depois Deck & Art" class="w-full h-auto object-cover">
+                    </div>
+                </div>
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-woodlight font-semibold text-xs uppercase tracking-widest">Transformação Real</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Do espaço vazio ao ambiente perfeito para relaxar</h2>
+                    <p class="text-gray-300 leading-relaxed">
+                        Muitos clientes acham que precisam de um quintal gigante para ter uma área de spa. Como você pode ver neste projeto real executado pela <strong>Deck & Art</strong>, transformamos um terraço simples em um ambiente completo:
+                    </p>
+                    <ul class="space-y-3 text-gray-300 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqualight"></i><span>Hidromassagem de 5 lugares integrada</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqualight"></i><span>Deck padrão 3x3 com acabamento impermeabilizado</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqualight"></i><span>Banco em L planejado e ducha refrescante</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqualight"></i><span>Opção de pergolado com policarbonato para uso o ano inteiro</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA DE PROJETOS -->
+    <section id="projetos" class="py-24 bg-[#0e1113] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-aqualight font-semibold text-xs uppercase tracking-widest">Portfólio</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Obras & Instalações</h2>
+                <p class="text-gray-400 mt-3 text-sm">Clique em qualquer imagem para ampliar os detalhes do acabamento.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div onclick="openModal('{{ url_for('static', filename='img/2.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                    <img src="{{ url_for('static', filename='img/2.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div onclick="openModal('{{ url_for('static', filename='img/4.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                    <img src="{{ url_for('static', filename='img/4.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div onclick="openModal('{{ url_for('static', filename='img/7.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                    <img src="{{ url_for('static', filename='img/7.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div onclick="openModal('{{ url_for('static', filename='img/9.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                    <img src="{{ url_for('static', filename='img/9.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#070809] border-t border-white/5 py-12 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
+            <p class="text-white font-bold tracking-wider">DECK & ART — HIDROMASSAGEM & LAZER</p>
+            <p class="text-xs text-gray-600">© 2026 Deck & Art. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5531987894164?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank"
+       aria-label="Falar no WhatsApp"
+       class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#25D366] text-gray-950 flex items-center justify-center text-3xl shadow-2xl whatsapp-pulse hover:scale-110 transition">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- MODAL DE IMAGEM -->
+    <div id="imageModal" onclick="closeModal()" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4">
+        <button class="absolute top-6 right-6 text-white text-3xl hover:text-aqualight">&times;</button>
+        <img id="modalImg" src="" alt="Ampliação" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl border border-white/10">
+    </div>
+
+    <!-- SCRIPT DE ÁUDIO AUTOMÁTICO E CONTROLE MANUAL -->
+    <script>
+        const audio = document.getElementById('waterAudio');
+        let soundStarted = false;
+        let isUserMuted = false;
+
+        function updateButtonUI(active) {
+            const icon = document.getElementById('soundIcon');
+            const label = document.getElementById('soundLabel');
+            const btn = document.getElementById('soundToggleBtn');
+
+            if (active) {
+                icon.className = 'fa-solid fa-volume-high text-green-400 animate-pulse';
+                label.textContent = 'Som: Ativo';
+                btn.className = 'flex items-center gap-2 bg-green-500/20 border border-green-500/40 px-3.5 py-2 rounded-full text-green-400 text-xs font-semibold transition shadow-lg';
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-gray-400';
+                label.textContent = 'Som: Mudo';
+                btn.className = 'flex items-center gap-2 bg-darkcard border border-white/10 px-3.5 py-2 rounded-full text-gray-400 text-xs font-semibold transition shadow-lg';
+            }
+        }
+
+        function startAudioOnInteraction() {
+            if (soundStarted || isUserMuted) return;
+
+            audio.play().then(() => {
+                soundStarted = true;
+                updateButtonUI(true);
+                // Remove os ouvintes automáticos após iniciar com sucesso na primeira interação
+                window.removeEventListener('click', startAudioOnInteraction);
+                window.removeEventListener('scroll', startAudioOnInteraction);
+                window.removeEventListener('wheel', startAudioOnInteraction);
+                window.removeEventListener('mousemove', startAudioOnInteraction);
+                window.removeEventListener('touchstart', startAudioOnInteraction);
+                window.removeEventListener('keydown', startAudioOnInteraction);
+            }).catch(e => {
+                console.log("Aguardando interação para liberar o áudio.");
+            });
+        }
+
+        function toggleSoundManual(e) {
+            e.stopPropagation();
+            if (!soundStarted) {
+                audio.play().then(() => {
+                    soundStarted = true;
+                    isUserMuted = false;
+                    updateButtonUI(true);
+                }).catch(err => console.log(err));
+            } else {
+                if (audio.paused) {
+                    audio.play();
+                    isUserMuted = false;
+                    updateButtonUI(true);
+                } else {
+                    audio.pause();
+                    isUserMuted = true;
+                    updateButtonUI(false);
+                }
+            }
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            document.getElementById('modalImg').src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Monitora qualquer clique, toque, rolagem ou movimento para ativar o som sozinho
+        window.addEventListener('click', startAudioOnInteraction, { once: true });
+        window.addEventListener('scroll', startAudioOnInteraction, { once: true });
+        window.addEventListener('wheel', startAudioOnInteraction, { once: true });
+        window.addEventListener('mousemove', startAudioOnInteraction, { once: true });
+        window.addEventListener('touchstart', startAudioOnInteraction, { once: true });
+        window.addEventListener('keydown', startAudioOnInteraction, { once: true });
+    </script>
+</body>
+</html>
