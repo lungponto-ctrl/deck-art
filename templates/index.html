@@ -71,22 +71,32 @@
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-300">
                 <a href="#inicio" class="hover:text-aqualight transition">Início</a>
                 <a href="#servicos" class="hover:text-aqualight transition">Serviços</a>
                 <a href="#transformacao" class="hover:text-aqualight transition">Antes & Depois</a>
                 <a href="#projetos" class="hover:text-aqualight transition">Galeria</a>
+                <!-- Link do Instagram na Navbar -->
+                <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="hover:text-pink-400 transition flex items-center gap-1.5 text-gray-300">
+                    <i class="fa-brands fa-instagram text-lg text-pink-500"></i> Instagram
+                </a>
                 <a href="#contato" class="px-4 py-2 rounded-full bg-wood hover:bg-woodlight text-white font-semibold transition shadow-lg shadow-wood/20">
                     Orçamento WhatsApp
                 </a>
             </nav>
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
                 <!-- Botão de controle de som visível na Navbar -->
                 <button onclick="toggleSoundManual(event)" id="soundToggleBtn" class="flex items-center gap-2 bg-aqua/20 border border-aqua/40 hover:bg-aqua/30 px-3.5 py-2 rounded-full text-aqualight text-xs font-semibold transition shadow-lg">
                     <i id="soundIcon" class="fa-solid fa-volume-xmark text-gray-400"></i>
                     <span id="soundLabel">Som: Mudo</span>
                 </button>
+
+                <!-- Ícone do Instagram para Celular -->
+                <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" aria-label="Instagram"
+                   class="md:hidden w-9 h-9 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white flex items-center justify-center text-sm shadow-lg">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
 
                 <a href="https://wa.me/5531987894164?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank"
                    class="md:hidden px-3.5 py-2 rounded-full bg-[#25D366] text-gray-950 font-bold text-xs flex items-center gap-2">
@@ -230,10 +240,15 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-[#070809] border-t border-white/5 py-12 text-center text-gray-500 text-sm">
+    <footer id="contato" class="bg-[#070809] border-t border-white/5 py-12 text-center text-gray-500 text-sm">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
             <p class="text-white font-bold tracking-wider">DECK & ART — HIDROMASSAGEM & LAZER</p>
-            <p class="text-xs text-gray-600">© 2026 Deck & Art. Todos os direitos reservados.</p>
+            <div class="flex items-center gap-6 mt-2">
+                <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="text-gray-400 hover:text-pink-400 transition flex items-center gap-2">
+                    <i class="fa-brands fa-instagram text-xl text-pink-500"></i> Siga no Instagram
+                </a>
+            </div>
+            <p class="text-xs text-gray-600 mt-2">© 2026 Deck & Art. Todos os direitos reservados.</p>
         </div>
     </footer>
 
