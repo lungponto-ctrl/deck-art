@@ -6,7 +6,7 @@
     <title>Deck & Art | Decks, Hidromassagem, Piscinas e Pergolados</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -32,6 +32,12 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
+        .wood-amp {
+            background: linear-gradient(135deg, #6e3514 0%, #c86d31 45%, #8b4513 75%, #e08e55 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.7));
+        }
         @keyframes pulse-ring {
             0% { transform: scale(0.95); opacity: 0.7; }
             70% { transform: scale(1.25); opacity: 0; }
@@ -56,7 +62,7 @@
             <a href="#inicio" class="flex items-center gap-3 group">
                 <img src="{{ url_for('static', filename='img/1.png') }}" alt="Logo Deck & Art" class="w-12 h-12 rounded-full object-cover border border-wood/50 group-hover:border-aqualight transition">
                 <div>
-                    <span class="font-extrabold text-xl tracking-wider text-white block leading-none">DECK <span class="text-woodlight">&</span> ART</span>
+                    <span class="font-extrabold text-xl tracking-wider text-white block leading-none">DECK <span class="wood-amp font-black">&</span> ART</span>
                     <span class="text-[10px] tracking-[0.25em] text-aqualight uppercase font-semibold">Hidromassagem & Lazer</span>
                 </div>
             </a>
@@ -274,4 +280,59 @@
                 <div onclick="openModal('{{ url_for('static', filename='img/2.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
                     <img src="{{ url_for('static', filename='img/2.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div
+                <div onclick="openModal('{{ url_for('static', filename='img/4.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                    <img src="{{ url_for('static', filename='img/4.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div onclick="openModal('{{ url_for('static', filename='img/7.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                    <img src="{{ url_for('static', filename='img/7.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div onclick="openModal('{{ url_for('static', filename='img/9.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                    <img src="{{ url_for('static', filename='img/9.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contato" class="bg-[#070809] border-t border-white/5 py-12 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
+            <p class="text-white font-bold tracking-wider">DECK <span class="wood-amp font-black">&</span> ART — HIDROMASSAGEM & LAZER</p>
+            <div class="flex items-center gap-6 mt-2">
+                <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="text-gray-400 hover:text-pink-400 transition flex items-center gap-2">
+                    <i class="fa-brands fa-instagram text-xl text-pink-500"></i> Siga no Instagram
+                </a>
+            </div>
+            <p class="text-xs text-gray-600 mt-2">© 2026 Deck & Art. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5531987894164?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank"
+       aria-label="Falar no WhatsApp"
+       class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#25D366] text-gray-950 flex items-center justify-center text-3xl shadow-2xl whatsapp-pulse hover:scale-110 transition">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- MODAL DE IMAGEM -->
+    <div id="imageModal" onclick="closeModal()" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4">
+        <button class="absolute top-6 right-6 text-white text-3xl hover:text-aqualight">&times;</button>
+        <img id="modalImg" src="" alt="Ampliação" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl border border-white/10">
+    </div>
+
+    <!-- SCRIPT DO MODAL DE IMAGENS -->
+    <script>
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            document.getElementById('modalImg').src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
