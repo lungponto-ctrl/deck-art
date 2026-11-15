@@ -217,8 +217,63 @@
         </div>
     </section>
 
+    <!-- SEÇÃO DE VÍDEOS EM DESTAQUE (3 VÍDEOS) -->
+    <section class="py-24 bg-[#0e1113] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-aqualight font-semibold text-xs uppercase tracking-widest">Bastidores & Execução</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Veja Nossos Projetos em Ação</h2>
+                <p class="text-gray-400 mt-3 text-sm">Acompanhe de perto o padrão de acabamento e o funcionamento dos nossos spas e decks.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Vídeo 1 -->
+                <div class="bg-darkcard rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+                    <div class="relative aspect-video overflow-hidden bg-black">
+                        <video controls class="w-full h-full object-cover">
+                            <source src="{{ url_for('static', filename='img/video1.mp4') }}" type="video/mp4">
+                            Seu navegador não suporta vídeos em HTML5.
+                        </video>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Instalação de Hidromassagem & Deck</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Detalhes da montagem estrutural e integração com o ambiente externo.</p>
+                    </div>
+                </div>
+
+                <!-- Vídeo 2 -->
+                <div class="bg-darkcard rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+                    <div class="relative aspect-video overflow-hidden bg-black">
+                        <video controls class="w-full h-full object-cover">
+                            <source src="{{ url_for('static', filename='img/video2.mp4') }}" type="video/mp4">
+                            Seu navegador não suporta vídeos em HTML5.
+                        </video>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Acabamento e Iluminação</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Projetos planejados para aproveitar cada metro quadrado com sofisticação.</p>
+                    </div>
+                </div>
+
+                <!-- Vídeo 3 -->
+                <div class="bg-darkcard rounded-3xl overflow-hidden border border-white/10 shadow-2xl group md:col-span-2 lg:col-span-1">
+                    <div class="relative aspect-video overflow-hidden bg-black">
+                        <video controls class="w-full h-full object-cover">
+                            <source src="{{ url_for('static', filename='img/video3.mp4') }}" type="video/mp4">
+                            Seu navegador não suporta vídeos em HTML5.
+                        </video>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Área Externa & Spas</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Visão geral de projetos finalizados prontos para o lazer em família.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- GALERIA DE PROJETOS -->
-    <section id="projetos" class="py-24 bg-[#0e1113] border-t border-white/5">
+    <section id="projetos" class="py-24 bg-darkbg border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-14">
                 <span class="text-aqualight font-semibold text-xs uppercase tracking-widest">Portfólio</span>
@@ -332,8 +387,8 @@
         function openModal(src) {
             const modal = document.getElementById('imageModal');
             document.getElementById('modalImg').src = src;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         function closeModal() {
