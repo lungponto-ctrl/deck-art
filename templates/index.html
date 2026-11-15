@@ -50,11 +50,6 @@
 </head>
 <body class="antialiased selection:bg-aqua selection:text-white">
 
-    <!-- Áudio Local Oculto -->
-    <audio id="waterAudio" loop preload="auto">
-        <source src="{{ url_for('static', filename='audio.mp3') }}" type="audio/mpeg">
-    </audio>
-
     <!-- NAVBAR -->
     <header class="fixed top-0 w-full z-50 glass-nav transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -81,12 +76,6 @@
             </nav>
 
             <div class="flex items-center gap-3">
-                <!-- Botão de controle de som visível na Navbar -->
-                <button onclick="toggleSoundManual(event)" id="soundToggleBtn" class="flex items-center gap-2 bg-aqua/20 border border-aqua/40 hover:bg-aqua/30 px-3.5 py-2 rounded-full text-aqualight text-xs font-semibold transition shadow-lg">
-                    <i id="soundIcon" class="fa-solid fa-volume-xmark text-gray-400"></i>
-                    <span id="soundLabel">Som: Mudo</span>
-                </button>
-
                 <!-- Ícone do Instagram para Celular -->
                 <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" aria-label="Instagram"
                    class="md:hidden w-9 h-9 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white flex items-center justify-center text-sm shadow-lg">
@@ -324,66 +313,8 @@
         <img id="modalImg" src="" alt="Ampliação" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl border border-white/10">
     </div>
 
-    <!-- SCRIPT DE ÁUDIO AUTOMÁTICO E CONTROLE MANUAL -->
+    <!-- SCRIPT DO MODAL DE IMAGENS -->
     <script>
-        const audio = document.getElementById('waterAudio');
-        let soundStarted = false;
-        let isUserMuted = false;
-
-        function updateButtonUI(active) {
-            const icon = document.getElementById('soundIcon');
-            const label = document.getElementById('soundLabel');
-            const btn = document.getElementById('soundToggleBtn');
-
-            if (active) {
-                icon.className = 'fa-solid fa-volume-high text-green-400 animate-pulse';
-                label.textContent = 'Som: Ativo';
-                btn.className = 'flex items-center gap-2 bg-green-500/20 border border-green-500/40 px-3.5 py-2 rounded-full text-green-400 text-xs font-semibold transition shadow-lg';
-            } else {
-                icon.className = 'fa-solid fa-volume-xmark text-gray-400';
-                label.textContent = 'Som: Mudo';
-                btn.className = 'flex items-center gap-2 bg-darkcard border border-white/10 px-3.5 py-2 rounded-full text-gray-400 text-xs font-semibold transition shadow-lg';
-            }
-        }
-
-        function startAudioOnInteraction() {
-            if (soundStarted || isUserMuted) return;
-
-            audio.play().then(() => {
-                soundStarted = true;
-                updateButtonUI(true);
-                window.removeEventListener('click', startAudioOnInteraction);
-                window.removeEventListener('scroll', startAudioOnInteraction);
-                window.removeEventListener('wheel', startAudioOnInteraction);
-                window.removeEventListener('mousemove', startAudioOnInteraction);
-                window.removeEventListener('touchstart', startAudioOnInteraction);
-                window.removeEventListener('keydown', startAudioOnInteraction);
-            }).catch(e => {
-                console.log("Aguardando interação para liberar o áudio.");
-            });
-        }
-
-        function toggleSoundManual(e) {
-            e.stopPropagation();
-            if (!soundStarted) {
-                audio.play().then(() => {
-                    soundStarted = true;
-                    isUserMuted = false;
-                    updateButtonUI(true);
-                }).catch(err => console.log(err));
-            } else {
-                if (audio.paused) {
-                    audio.play();
-                    isUserMuted = false;
-                    updateButtonUI(true);
-                } else {
-                    audio.pause();
-                    isUserMuted = true;
-                    updateButtonUI(false);
-                }
-            }
-        }
-
         function openModal(src) {
             const modal = document.getElementById('imageModal');
             document.getElementById('modalImg').src = src;
@@ -396,13 +327,6 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
-
-        window.addEventListener('click', startAudioOnInteraction, { once: true });
-        window.addEventListener('scroll', startAudioOnInteraction, { once: true });
-        window.addEventListener('wheel', startAudioOnInteraction, { once: true });
-        window.addEventListener('mousemove', startAudioOnInteraction, { once: true });
-        window.addEventListener('touchstart', startAudioOnInteraction, { once: true });
-        window.addEventListener('keydown', startAudioOnInteraction, { once: true });
     </script>
 </body>
 </html>
