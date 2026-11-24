@@ -13,10 +13,13 @@
                 extend: {
                     fontFamily: { sans: ['Montserrat', 'sans-serif'] },
                     colors: {
-                        darkbg: '#0b0d0e',
-                        darkcard: '#14171a',
+                        sandbg: '#f7f5f0',
+                        linenbg: '#ede8df',
+                        sandborder: '#e2dcd0',
+                        charcoal: '#1e2426',
+                        slate: '#5c6468',
                         wood: '#8b4c24',
-                        woodlight: '#d97736',
+                        woodlight: '#c86d31',
                         aqua: '#1c7c94',
                         aqualight: '#29a8c7',
                     }
@@ -25,18 +28,22 @@
         }
     </script>
     <style>
-        body { background-color: #0b0d0e; color: #f3f4f6; }
-        .glass-nav { background: rgba(11, 13, 14, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        body { background-color: #f7f5f0; color: #1e2426; }
+        .glass-nav {
+            background: rgba(247, 245, 240, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2dcd0;
+        }
         .text-box-glass {
-            background: rgba(11, 13, 14, 0.45);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(20, 25, 28, 0.65);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .wood-amp {
             background: linear-gradient(135deg, #6e3514 0%, #c86d31 45%, #8b4513 75%, #e08e55 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.7));
+            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.25));
         }
         @keyframes pulse-ring {
             0% { transform: scale(0.95); opacity: 0.7; }
@@ -60,23 +67,23 @@
     <header class="fixed top-0 w-full z-50 glass-nav transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#inicio" class="flex items-center gap-3 group">
-                <img src="{{ url_for('static', filename='img/1.png') }}" alt="Logo Deck & Art" class="w-12 h-12 rounded-full object-cover border border-wood/50 group-hover:border-aqualight transition">
+                <img src="{{ url_for('static', filename='img/1.png') }}" alt="Logo Deck & Art" class="w-12 h-12 rounded-full object-cover border-2 border-wood/40 group-hover:border-aqua transition shadow-sm">
                 <div>
-                    <span class="font-extrabold text-xl tracking-wider text-white block leading-none">DECK <span class="wood-amp font-black">&</span> ART</span>
-                    <span class="text-[10px] tracking-[0.25em] text-aqualight uppercase font-semibold">Hidromassagem & Lazer</span>
+                    <span class="font-extrabold text-xl tracking-wider text-charcoal block leading-none">DECK <span class="wood-amp font-black">&</span> ART</span>
+                    <span class="text-[10px] tracking-[0.25em] text-aqua uppercase font-bold">Hidromassagem & Lazer</span>
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-300">
-                <a href="#inicio" class="hover:text-aqualight transition">Início</a>
-                <a href="#servicos" class="hover:text-aqualight transition">Serviços</a>
-                <a href="#transformacao" class="hover:text-aqualight transition">Antes & Depois</a>
-                <a href="#projetos" class="hover:text-aqualight transition">Galeria</a>
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate">
+                <a href="#inicio" class="hover:text-wood transition">Início</a>
+                <a href="#servicos" class="hover:text-wood transition">Serviços</a>
+                <a href="#transformacao" class="hover:text-wood transition">Antes & Depois</a>
+                <a href="#projetos" class="hover:text-wood transition">Galeria</a>
                 <!-- Link do Instagram na Navbar -->
-                <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="hover:text-pink-400 transition flex items-center gap-1.5 text-gray-300">
-                    <i class="fa-brands fa-instagram text-lg text-pink-500"></i> Instagram
+                <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="hover:text-pink-600 transition flex items-center gap-1.5 text-slate">
+                    <i class="fa-brands fa-instagram text-lg text-pink-600"></i> Instagram
                 </a>
-                <a href="#contato" class="px-4 py-2 rounded-full bg-wood hover:bg-woodlight text-white font-semibold transition shadow-lg shadow-wood/20">
+                <a href="#contato" class="px-5 py-2.5 rounded-full bg-wood hover:bg-woodlight text-white font-semibold transition shadow-md shadow-wood/20">
                     Orçamento WhatsApp
                 </a>
             </nav>
@@ -84,12 +91,12 @@
             <div class="flex items-center gap-3">
                 <!-- Ícone do Instagram para Celular -->
                 <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" aria-label="Instagram"
-                   class="md:hidden w-9 h-9 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white flex items-center justify-center text-sm shadow-lg">
+                   class="md:hidden w-9 h-9 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white flex items-center justify-center text-sm shadow-md">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
                 <a href="https://wa.me/5531987894164?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank"
-                   class="md:hidden px-3.5 py-2 rounded-full bg-[#25D366] text-gray-950 font-bold text-xs flex items-center gap-2">
+                   class="md:hidden px-3.5 py-2 rounded-full bg-[#25D366] text-gray-950 font-bold text-xs flex items-center gap-2 shadow-sm">
                     <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
             </div>
@@ -109,12 +116,12 @@
 
         <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-12 gap-12 items-center w-full">
             <div class="lg:col-span-7 space-y-6 p-8 rounded-3xl text-box-glass shadow-2xl">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aqua/30 border border-aqua/50 text-aqualight text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
-                    <i class="fa-solid fa-water"></i> Conforto, Madeira & Sofisticação
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aqua/30 border border-aqualight/50 text-white text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
+                    <i class="fa-solid fa-water text-aqualight"></i> Conforto, Madeira & Sofisticação
                 </div>
 
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight drop-shadow-md">
-                    Transformamos o seu espaço em um <span class="text-woodlight font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">refúgio de lazer</span>.
+                    Transformamos o seu espaço em um <span class="text-[#f39c63] font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">refúgio de lazer</span>.
                 </h1>
 
                 <p class="text-gray-100 text-base sm:text-lg leading-relaxed drop-shadow">
@@ -127,7 +134,7 @@
                         <i class="fa-brands fa-whatsapp text-xl"></i> Solicitar Orçamento
                     </a>
                     <a href="#projetos"
-                       class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/30 text-white font-semibold text-sm sm:text-base transition">
+                       class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/40 text-white font-semibold text-sm sm:text-base transition">
                         Ver Projetos Realizados
                     </a>
                 </div>
@@ -135,7 +142,7 @@
 
             <div class="lg:col-span-5 flex justify-center">
                 <div class="relative p-8 rounded-3xl text-box-glass shadow-2xl text-center max-w-sm">
-                    <div class="w-40 h-40 mx-auto mb-6 flex items-center justify-center p-1 rounded-full bg-black/40 border-2 border-wood/60 shadow-xl">
+                    <div class="w-40 h-40 mx-auto mb-6 flex items-center justify-center p-1.5 rounded-full bg-black/50 border-2 border-woodlight/70 shadow-xl">
                         <img src="{{ url_for('static', filename='img/1.png') }}" alt="Deck & Art Logo" class="w-full h-full rounded-full object-contain">
                     </div>
                     <h2 class="text-xl font-bold text-white mb-2 drop-shadow">Lazer de verdade não depende de espaço grande</h2>
@@ -146,40 +153,40 @@
     </section>
 
     <!-- SERVIÇOS -->
-    <section id="servicos" class="py-24 bg-[#0e1113] border-t border-white/5">
+    <section id="servicos" class="py-24 bg-sandbg border-t border-sandborder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-aqualight font-semibold text-xs uppercase tracking-widest">O que fazemos</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Soluções Completas para sua Área Externa</h2>
+                <span class="text-aqua font-bold text-xs uppercase tracking-widest">O que fazemos</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal mt-2">Soluções Completas para sua Área Externa</h2>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-darkcard rounded-2xl overflow-hidden border border-white/5 hover:border-aqua/50 transition group">
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-xl hover:border-aqua/50 transition group">
                     <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/6.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2">Hidromassagens</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Instalação hidráulica, elétrica e estrutural de spas e banheiras.</p>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Hidromassagens</h3>
+                        <p class="text-slate text-sm leading-relaxed">Instalação hidráulica, elétrica e estrutural de spas e banheiras.</p>
                     </div>
                 </div>
-                <div class="bg-darkcard rounded-2xl overflow-hidden border border-white/5 hover:border-woodlight/50 transition group">
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-xl hover:border-woodlight/50 transition group">
                     <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/2.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2">Decks & Escadas</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Decks em madeira tratada de alta durabilidade.</p>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Decks & Escadas</h3>
+                        <p class="text-slate text-sm leading-relaxed">Decks em madeira tratada de alta durabilidade.</p>
                     </div>
                 </div>
-                <div class="bg-darkcard rounded-2xl overflow-hidden border border-white/5 hover:border-aqua/50 transition group">
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-xl hover:border-aqua/50 transition group">
                     <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/5.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2">Piscinas & Duchas</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Instalação e revestimento com integração de ducha.</p>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Piscinas & Duchas</h3>
+                        <p class="text-slate text-sm leading-relaxed">Instalação e revestimento com integração de ducha.</p>
                     </div>
                 </div>
-                <div class="bg-darkcard rounded-2xl overflow-hidden border border-white/5 hover:border-woodlight/50 transition group">
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-xl hover:border-woodlight/50 transition group">
                     <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/8.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2">Pergolados</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Pergolados de madeira com cobertura em policarbonato.</p>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Pergolados</h3>
+                        <p class="text-slate text-sm leading-relaxed">Pergolados de madeira com cobertura em policarbonato.</p>
                     </div>
                 </div>
             </div>
@@ -187,25 +194,25 @@
     </section>
 
     <!-- ANTES & DEPOIS -->
-    <section id="transformacao" class="py-24 bg-darkbg">
+    <section id="transformacao" class="py-24 bg-linenbg border-t border-sandborder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-6">
-                    <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl max-w-lg mx-auto">
+                    <div class="rounded-2xl overflow-hidden border-4 border-white shadow-xl max-w-lg mx-auto">
                         <img src="{{ url_for('static', filename='img/3.png') }}" alt="Antes e Depois Deck & Art" class="w-full h-[450px] object-cover">
                     </div>
                 </div>
                 <div class="lg:col-span-6 space-y-6">
-                    <span class="text-woodlight font-semibold text-xs uppercase tracking-widest">Transformação Real</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Do espaço vazio ao ambiente perfeito para relaxar</h2>
-                    <p class="text-gray-300 leading-relaxed">
-                        Muitos clientes acham que precisam de um quintal gigante para ter uma área de spa. Como você pode ver neste projeto real executado pela <strong>Deck & Art</strong>, transformamos um terraço simples em um ambiente completo:
+                    <span class="text-wood font-bold text-xs uppercase tracking-widest">Transformação Real</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal">Do espaço vazio ao ambiente perfeito para relaxar</h2>
+                    <p class="text-slate leading-relaxed">
+                        Muitos clientes acham que precisam de um quintal gigante para ter uma área de spa. Como você pode ver neste projeto real executado pela <strong class="text-charcoal">Deck & Art</strong>, transformamos um terraço simples em um ambiente completo:
                     </p>
-                    <ul class="space-y-3 text-gray-300 text-sm">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqualight"></i><span>Hidromassagem de 5 lugares integrada</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqualight"></i><span>Deck padrão 3x3 com acabamento impermeabilizado</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqualight"></i><span>Banco em L planejado e ducha refrescante</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqualight"></i><span>Opção de pergolado com policarbonato para uso o ano inteiro</span></li>
+                    <ul class="space-y-3 text-charcoal font-medium text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqua text-base"></i><span>Hidromassagem de 5 lugares integrada</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqua text-base"></i><span>Deck padrão 3x3 com acabamento impermeabilizado</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqua text-base"></i><span>Banco em L planejado e ducha refrescante</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqua text-base"></i><span>Opção de pergolado com policarbonato para uso o ano inteiro</span></li>
                     </ul>
                 </div>
             </div>
@@ -213,17 +220,17 @@
     </section>
 
     <!-- SEÇÃO DE VÍDEOS EM DESTAQUE (3 VÍDEOS) -->
-    <section class="py-24 bg-[#0e1113] border-t border-white/5">
+    <section class="py-24 bg-sandbg border-t border-sandborder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-aqualight font-semibold text-xs uppercase tracking-widest">Bastidores & Execução</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Veja Nossos Projetos em Ação</h2>
-                <p class="text-gray-400 mt-3 text-sm">Acompanhe de perto o padrão de acabamento e o funcionamento dos nossos spas e decks.</p>
+                <span class="text-aqua font-bold text-xs uppercase tracking-widest">Bastidores & Execução</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal mt-2">Veja Nossos Projetos em Ação</h2>
+                <p class="text-slate mt-3 text-sm">Acompanhe de perto o padrão de acabamento e o funcionamento dos nossos spas e decks.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Vídeo 1 -->
-                <div class="bg-darkcard rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+                <div class="bg-white rounded-3xl overflow-hidden border border-sandborder shadow-md hover:shadow-xl transition group">
                     <div class="relative aspect-video overflow-hidden bg-black">
                         <video controls class="w-full h-full object-cover">
                             <source src="{{ url_for('static', filename='img/video1.mp4') }}" type="video/mp4">
@@ -231,13 +238,13 @@
                         </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2">Instalação de Hidromassagem & Deck</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Detalhes da montagem estrutural e integração com o ambiente externo.</p>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Instalação de Hidromassagem & Deck</h3>
+                        <p class="text-slate text-sm leading-relaxed">Detalhes da montagem estrutural e integração com o ambiente externo.</p>
                     </div>
                 </div>
 
                 <!-- Vídeo 2 -->
-                <div class="bg-darkcard rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+                <div class="bg-white rounded-3xl overflow-hidden border border-sandborder shadow-md hover:shadow-xl transition group">
                     <div class="relative aspect-video overflow-hidden bg-black">
                         <video controls class="w-full h-full object-cover">
                             <source src="{{ url_for('static', filename='img/video2.mp4') }}" type="video/mp4">
@@ -245,13 +252,13 @@
                         </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2">Acabamento e Iluminação</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Projetos planejados para aproveitar cada metro quadrado com sofisticação.</p>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Acabamento e Iluminação</h3>
+                        <p class="text-slate text-sm leading-relaxed">Projetos planejados para aproveitar cada metro quadrado com sofisticação.</p>
                     </div>
                 </div>
 
                 <!-- Vídeo 3 -->
-                <div class="bg-darkcard rounded-3xl overflow-hidden border border-white/10 shadow-2xl group md:col-span-2 lg:col-span-1">
+                <div class="bg-white rounded-3xl overflow-hidden border border-sandborder shadow-md hover:shadow-xl transition group md:col-span-2 lg:col-span-1">
                     <div class="relative aspect-video overflow-hidden bg-black">
                         <video controls class="w-full h-full object-cover">
                             <source src="{{ url_for('static', filename='img/video3.mp4') }}" type="video/mp4">
@@ -259,8 +266,8 @@
                         </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2">Área Externa & Spas</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Visão geral de projetos finalizados prontos para o lazer em família.</p>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Área Externa & Spas</h3>
+                        <p class="text-slate text-sm leading-relaxed">Visão geral de projetos finalizados prontos para o lazer em família.</p>
                     </div>
                 </div>
             </div>
@@ -268,25 +275,25 @@
     </section>
 
     <!-- GALERIA DE PROJETOS -->
-    <section id="projetos" class="py-24 bg-darkbg border-t border-white/5">
+    <section id="projetos" class="py-24 bg-linenbg border-t border-sandborder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-14">
-                <span class="text-aqualight font-semibold text-xs uppercase tracking-widest">Portfólio</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Obras & Instalações</h2>
-                <p class="text-gray-400 mt-3 text-sm">Clique em qualquer imagem para ampliar os detalhes do acabamento.</p>
+                <span class="text-aqua font-bold text-xs uppercase tracking-widest">Portfólio</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal mt-2">Obras & Instalações</h2>
+                <p class="text-slate mt-3 text-sm">Clique em qualquer imagem para ampliar os detalhes do acabamento.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div onclick="openModal('{{ url_for('static', filename='img/2.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                <div onclick="openModal('{{ url_for('static', filename='img/2.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-md hover:shadow-xl transition">
                     <img src="{{ url_for('static', filename='img/2.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div onclick="openModal('{{ url_for('static', filename='img/4.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                <div onclick="openModal('{{ url_for('static', filename='img/4.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-md hover:shadow-xl transition">
                     <img src="{{ url_for('static', filename='img/4.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div onclick="openModal('{{ url_for('static', filename='img/7.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                <div onclick="openModal('{{ url_for('static', filename='img/7.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-md hover:shadow-xl transition">
                     <img src="{{ url_for('static', filename='img/7.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div onclick="openModal('{{ url_for('static', filename='img/9.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                <div onclick="openModal('{{ url_for('static', filename='img/9.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-md hover:shadow-xl transition">
                     <img src="{{ url_for('static', filename='img/9.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
             </div>
@@ -294,15 +301,15 @@
     </section>
 
     <!-- FOOTER -->
-    <footer id="contato" class="bg-[#070809] border-t border-white/5 py-12 text-center text-gray-500 text-sm">
+    <footer id="contato" class="bg-charcoal py-12 text-center text-gray-300 text-sm">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
             <p class="text-white font-bold tracking-wider">DECK <span class="wood-amp font-black">&</span> ART — HIDROMASSAGEM & LAZER</p>
             <div class="flex items-center gap-6 mt-2">
-                <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="text-gray-400 hover:text-pink-400 transition flex items-center gap-2">
+                <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="text-gray-300 hover:text-pink-400 transition flex items-center gap-2">
                     <i class="fa-brands fa-instagram text-xl text-pink-500"></i> Siga no Instagram
                 </a>
             </div>
-            <p class="text-xs text-gray-600 mt-2">© 2026 Deck & Art. Todos os direitos reservados.</p>
+            <p class="text-xs text-gray-400 mt-2">© 2026 Deck & Art. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -314,9 +321,9 @@
     </a>
 
     <!-- MODAL DE IMAGEM -->
-    <div id="imageModal" onclick="closeModal()" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4">
+    <div id="imageModal" onclick="closeModal()" class="fixed inset-0 z-50 bg-black/85 hidden items-center justify-center p-4 backdrop-blur-sm">
         <button class="absolute top-6 right-6 text-white text-3xl hover:text-aqualight">&times;</button>
-        <img id="modalImg" src="" alt="Ampliação" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl border border-white/10">
+        <img id="modalImg" src="" alt="Ampliação" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl border-2 border-white/20">
     </div>
 
     <!-- SCRIPT DO MODAL DE IMAGENS -->
