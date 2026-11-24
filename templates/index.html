@@ -44,6 +44,11 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        .logo-card-glass {
+            background: rgba(20, 25, 28, 0.42);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
         .wood-amp {
             background: linear-gradient(135deg, #6e3514 0%, #c86d31 45%, #8b4513 75%, #e08e55 100%);
             -webkit-background-clip: text;
@@ -146,12 +151,12 @@
             </div>
 
             <div class="lg:col-span-5 flex justify-center">
-                <div class="relative p-8 rounded-3xl text-box-glass shadow-2xl text-center max-w-sm">
-                    <div class="w-40 h-40 mx-auto mb-6 flex items-center justify-center p-1.5 rounded-full bg-black/50 border-2 border-woodlight/70 shadow-xl">
-                        <img src="{{ url_for('static', filename='img/1.png') }}" alt="Deck & Art Logo" class="w-full h-full rounded-full object-contain">
+                <div class="relative p-7 rounded-3xl logo-card-glass shadow-xl text-center max-w-sm">
+                    <div class="w-44 mx-auto mb-5 p-2 rounded-2xl bg-black/55 border border-white/15 shadow-lg">
+                        <img src="{{ url_for('static', filename='img/1.png') }}" alt="Deck & Art Logo" class="w-full h-auto rounded-xl object-contain">
                     </div>
                     <h2 class="text-xl font-semibold text-white mb-2 leading-snug drop-shadow">Lazer de verdade não depende de espaço grande</h2>
-                    <p class="text-sm text-gray-200 mb-2 leading-relaxed drop-shadow">Adaptamos projetos completos de hidro e deck até mesmo para terraços e áreas compactas.</p>
+                    <p class="text-sm text-gray-200 leading-relaxed drop-shadow">Adaptamos projetos completos de hidro e deck até mesmo para terraços e áreas compactas.</p>
                 </div>
             </div>
         </div>
