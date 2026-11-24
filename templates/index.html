@@ -6,17 +6,21 @@
     <title>Deck & Art | Decks, Hidromassagem, Piscinas e Pergolados</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
                     colors: {
                         sandbg: '#f7f5f0',
                         linenbg: '#ede8df',
                         sandborder: '#e2dcd0',
-                        charcoal: '#1e2426',
+                        charcoal: '#262b2d',
+                        espresso: '#4a2c18',
                         slate: '#5c6468',
                         wood: '#8b4c24',
                         woodlight: '#c86d31',
@@ -28,9 +32,10 @@
         }
     </script>
     <style>
-        body { background-color: #f7f5f0; color: #1e2426; }
+        body { background-color: #f7f5f0; color: #262b2d; }
+        h1, h2, h3, .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
         .glass-nav {
-            background: rgba(247, 245, 240, 0.88);
+            background: rgba(247, 245, 240, 0.9);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid #e2dcd0;
         }
@@ -43,7 +48,7 @@
             background: linear-gradient(135deg, #6e3514 0%, #c86d31 45%, #8b4513 75%, #e08e55 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.2));
         }
         @keyframes pulse-ring {
             0% { transform: scale(0.95); opacity: 0.7; }
@@ -69,21 +74,21 @@
             <a href="#inicio" class="flex items-center gap-3 group">
                 <img src="{{ url_for('static', filename='img/1.png') }}" alt="Logo Deck & Art" class="w-12 h-12 rounded-full object-cover border-2 border-wood/40 group-hover:border-aqua transition shadow-sm">
                 <div>
-                    <span class="font-extrabold text-xl tracking-wider text-charcoal block leading-none">DECK <span class="wood-amp font-black">&</span> ART</span>
-                    <span class="text-[10px] tracking-[0.25em] text-aqua uppercase font-bold">Hidromassagem & Lazer</span>
+                    <span class="font-brand font-bold text-xl tracking-wide text-espresso block leading-none">DECK <span class="wood-amp font-extrabold">&</span> ART</span>
+                    <span class="text-[10px] tracking-[0.22em] text-aqua uppercase font-semibold mt-1 block">Hidromassagem & Lazer</span>
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate">
-                <a href="#inicio" class="hover:text-wood transition">Início</a>
-                <a href="#servicos" class="hover:text-wood transition">Serviços</a>
-                <a href="#transformacao" class="hover:text-wood transition">Antes & Depois</a>
-                <a href="#projetos" class="hover:text-wood transition">Galeria</a>
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate">
+                <a href="#inicio" class="hover:text-espresso transition">Início</a>
+                <a href="#servicos" class="hover:text-espresso transition">Serviços</a>
+                <a href="#transformacao" class="hover:text-espresso transition">Antes & Depois</a>
+                <a href="#projetos" class="hover:text-espresso transition">Galeria</a>
                 <!-- Link do Instagram na Navbar -->
                 <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="hover:text-pink-600 transition flex items-center gap-1.5 text-slate">
                     <i class="fa-brands fa-instagram text-lg text-pink-600"></i> Instagram
                 </a>
-                <a href="#contato" class="px-5 py-2.5 rounded-full bg-wood hover:bg-woodlight text-white font-semibold transition shadow-md shadow-wood/20">
+                <a href="#contato" class="px-5 py-2.5 rounded-full bg-wood hover:bg-woodlight text-white font-medium transition shadow-sm">
                     Orçamento WhatsApp
                 </a>
             </nav>
@@ -96,7 +101,7 @@
                 </a>
 
                 <a href="https://wa.me/5531987894164?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank"
-                   class="md:hidden px-3.5 py-2 rounded-full bg-[#25D366] text-gray-950 font-bold text-xs flex items-center gap-2 shadow-sm">
+                   class="md:hidden px-3.5 py-2 rounded-full bg-[#25D366] text-gray-950 font-semibold text-xs flex items-center gap-2 shadow-sm">
                     <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
             </div>
@@ -116,25 +121,25 @@
 
         <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-12 gap-12 items-center w-full">
             <div class="lg:col-span-7 space-y-6 p-8 rounded-3xl text-box-glass shadow-2xl">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aqua/30 border border-aqualight/50 text-white text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aqua/30 border border-aqualight/50 text-white text-xs font-medium tracking-wider uppercase backdrop-blur-md">
                     <i class="fa-solid fa-water text-aqualight"></i> Conforto, Madeira & Sofisticação
                 </div>
 
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight drop-shadow-md">
-                    Transformamos o seu espaço em um <span class="text-[#f39c63] font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">refúgio de lazer</span>.
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight drop-shadow-md">
+                    Transformamos o seu espaço em um <span class="text-[#f39c63] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">refúgio de lazer</span>.
                 </h1>
 
-                <p class="text-gray-100 text-base sm:text-lg leading-relaxed drop-shadow">
-                    Especialistas em instalação de <strong>hidromassagens, decks de madeira, piscinas e pergolados</strong>. Projetos sob medida para áreas grandes ou compactas, com acabamento impecável.
+                <p class="text-gray-100 text-base sm:text-lg leading-relaxed font-normal drop-shadow">
+                    Especialistas em instalação de <strong class="font-semibold text-white">hidromassagens, decks de madeira, piscinas e pergolados</strong>. Projetos sob medida para áreas grandes ou compactas, com acabamento impecável.
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
                     <a href="https://wa.me/5531987894164?text=Olá!%20Vim%20pelo%20site%20da%20Deck%20&%20Art%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank"
-                       class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-gray-950 font-bold text-sm sm:text-base transition shadow-xl">
+                       class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-gray-950 font-semibold text-sm sm:text-base transition shadow-xl">
                         <i class="fa-brands fa-whatsapp text-xl"></i> Solicitar Orçamento
                     </a>
                     <a href="#projetos"
-                       class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/40 text-white font-semibold text-sm sm:text-base transition">
+                       class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/40 text-white font-medium text-sm sm:text-base transition">
                         Ver Projetos Realizados
                     </a>
                 </div>
@@ -145,8 +150,8 @@
                     <div class="w-40 h-40 mx-auto mb-6 flex items-center justify-center p-1.5 rounded-full bg-black/50 border-2 border-woodlight/70 shadow-xl">
                         <img src="{{ url_for('static', filename='img/1.png') }}" alt="Deck & Art Logo" class="w-full h-full rounded-full object-contain">
                     </div>
-                    <h2 class="text-xl font-bold text-white mb-2 drop-shadow">Lazer de verdade não depende de espaço grande</h2>
-                    <p class="text-sm text-gray-200 mb-2 drop-shadow">Adaptamos projetos completos de hidro e deck até mesmo para terraços e áreas compactas.</p>
+                    <h2 class="text-xl font-semibold text-white mb-2 leading-snug drop-shadow">Lazer de verdade não depende de espaço grande</h2>
+                    <p class="text-sm text-gray-200 mb-2 leading-relaxed drop-shadow">Adaptamos projetos completos de hidro e deck até mesmo para terraços e áreas compactas.</p>
                 </div>
             </div>
         </div>
@@ -156,37 +161,61 @@
     <section id="servicos" class="py-24 bg-sandbg border-t border-sandborder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-aqua font-bold text-xs uppercase tracking-widest">O que fazemos</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal mt-2">Soluções Completas para sua Área Externa</h2>
+                <span class="text-aqua font-semibold text-xs uppercase tracking-[0.2em]">Portfólio de Serviços</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-espresso mt-2 tracking-tight">Soluções Completas para sua Área Externa</h2>
+                <p class="text-slate text-sm sm:text-base mt-3 leading-relaxed">Execução técnica e estética pensada para valorizar cada detalhe do seu espaço de lazer.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-xl hover:border-aqua/50 transition group">
-                    <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/6.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-charcoal mb-2">Hidromassagens</h3>
-                        <p class="text-slate text-sm leading-relaxed">Instalação hidráulica, elétrica e estrutural de spas e banheiras.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-aqua/40 transition duration-300 group flex flex-col">
+                    <div class="h-52 overflow-hidden bg-linenbg">
+                        <img src="{{ url_for('static', filename='img/6.png') }}" alt="Hidromassagens" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-aqua">01 · Bem-estar</span>
+                            <h3 class="text-lg font-bold text-espresso mt-1 mb-2">Hidromassagens</h3>
+                            <p class="text-slate text-sm leading-relaxed">Instalação hidráulica, elétrica e estrutural de spas e banheiras com acabamento preciso.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-xl hover:border-woodlight/50 transition group">
-                    <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/2.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-charcoal mb-2">Decks & Escadas</h3>
-                        <p class="text-slate text-sm leading-relaxed">Decks em madeira tratada de alta durabilidade.</p>
+
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-wood/40 transition duration-300 group flex flex-col">
+                    <div class="h-52 overflow-hidden bg-linenbg">
+                        <img src="{{ url_for('static', filename='img/2.png') }}" alt="Decks e Escadas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-wood">02 · Madeira Nobre</span>
+                            <h3 class="text-lg font-bold text-espresso mt-1 mb-2">Decks & Escadas</h3>
+                            <p class="text-slate text-sm leading-relaxed">Decks e escadas em madeira tratada de alta durabilidade, protegidos contra sol e umidade.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-xl hover:border-aqua/50 transition group">
-                    <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/5.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-charcoal mb-2">Piscinas & Duchas</h3>
-                        <p class="text-slate text-sm leading-relaxed">Instalação e revestimento com integração de ducha.</p>
+
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-aqua/40 transition duration-300 group flex flex-col">
+                    <div class="h-52 overflow-hidden bg-linenbg">
+                        <img src="{{ url_for('static', filename='img/5.png') }}" alt="Piscinas e Duchas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-aqua">03 · Refrescância</span>
+                            <h3 class="text-lg font-bold text-espresso mt-1 mb-2">Piscinas & Duchas</h3>
+                            <p class="text-slate text-sm leading-relaxed">Instalação, integração e acabamentos harmoniosos para áreas de banho e lazer.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-xl hover:border-woodlight/50 transition group">
-                    <div class="h-48 overflow-hidden"><img src="{{ url_for('static', filename='img/8.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-charcoal mb-2">Pergolados</h3>
-                        <p class="text-slate text-sm leading-relaxed">Pergolados de madeira com cobertura em policarbonato.</p>
+
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-wood/40 transition duration-300 group flex flex-col">
+                    <div class="h-52 overflow-hidden bg-linenbg">
+                        <img src="{{ url_for('static', filename='img/8.png') }}" alt="Pergolados" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-wood">04 · Cobertura & Sombra</span>
+                            <h3 class="text-lg font-bold text-espresso mt-1 mb-2">Pergolados</h3>
+                            <p class="text-slate text-sm leading-relaxed">Pergolados planejados em madeira com cobertura em policarbonato para uso o ano todo.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -198,15 +227,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-6">
-                    <div class="rounded-2xl overflow-hidden border-4 border-white shadow-xl max-w-lg mx-auto">
+                    <div class="rounded-2xl overflow-hidden border-4 border-white shadow-lg max-w-lg mx-auto">
                         <img src="{{ url_for('static', filename='img/3.png') }}" alt="Antes e Depois Deck & Art" class="w-full h-[450px] object-cover">
                     </div>
                 </div>
                 <div class="lg:col-span-6 space-y-6">
-                    <span class="text-wood font-bold text-xs uppercase tracking-widest">Transformação Real</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal">Do espaço vazio ao ambiente perfeito para relaxar</h2>
+                    <span class="text-wood font-semibold text-xs uppercase tracking-[0.2em]">Transformação Real</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-espresso tracking-tight leading-snug">Do espaço vazio ao ambiente perfeito para relaxar</h2>
                     <p class="text-slate leading-relaxed">
-                        Muitos clientes acham que precisam de um quintal gigante para ter uma área de spa. Como você pode ver neste projeto real executado pela <strong class="text-charcoal">Deck & Art</strong>, transformamos um terraço simples em um ambiente completo:
+                        Muitos clientes acham que precisam de um quintal gigante para ter uma área de spa. Como você pode ver neste projeto real executado pela <strong class="font-semibold text-espresso">Deck & Art</strong>, transformamos um terraço simples em um ambiente completo:
                     </p>
                     <ul class="space-y-3 text-charcoal font-medium text-sm">
                         <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-aqua text-base"></i><span>Hidromassagem de 5 lugares integrada</span></li>
@@ -223,14 +252,14 @@
     <section class="py-24 bg-sandbg border-t border-sandborder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-aqua font-bold text-xs uppercase tracking-widest">Bastidores & Execução</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal mt-2">Veja Nossos Projetos em Ação</h2>
-                <p class="text-slate mt-3 text-sm">Acompanhe de perto o padrão de acabamento e o funcionamento dos nossos spas e decks.</p>
+                <span class="text-aqua font-semibold text-xs uppercase tracking-[0.2em]">Bastidores & Execução</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-espresso mt-2 tracking-tight">Veja Nossos Projetos em Ação</h2>
+                <p class="text-slate mt-3 text-sm sm:text-base leading-relaxed">Acompanhe de perto o padrão de acabamento e o funcionamento dos nossos spas e decks.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Vídeo 1 -->
-                <div class="bg-white rounded-3xl overflow-hidden border border-sandborder shadow-md hover:shadow-xl transition group">
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg transition group">
                     <div class="relative aspect-video overflow-hidden bg-black">
                         <video controls class="w-full h-full object-cover">
                             <source src="{{ url_for('static', filename='img/video1.mp4') }}" type="video/mp4">
@@ -238,13 +267,13 @@
                         </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-charcoal mb-2">Instalação de Hidromassagem & Deck</h3>
+                        <h3 class="text-lg font-bold text-espresso mb-2">Instalação de Hidromassagem & Deck</h3>
                         <p class="text-slate text-sm leading-relaxed">Detalhes da montagem estrutural e integração com o ambiente externo.</p>
                     </div>
                 </div>
 
                 <!-- Vídeo 2 -->
-                <div class="bg-white rounded-3xl overflow-hidden border border-sandborder shadow-md hover:shadow-xl transition group">
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg transition group">
                     <div class="relative aspect-video overflow-hidden bg-black">
                         <video controls class="w-full h-full object-cover">
                             <source src="{{ url_for('static', filename='img/video2.mp4') }}" type="video/mp4">
@@ -252,13 +281,13 @@
                         </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-charcoal mb-2">Acabamento e Iluminação</h3>
+                        <h3 class="text-lg font-bold text-espresso mb-2">Acabamento e Iluminação</h3>
                         <p class="text-slate text-sm leading-relaxed">Projetos planejados para aproveitar cada metro quadrado com sofisticação.</p>
                     </div>
                 </div>
 
                 <!-- Vídeo 3 -->
-                <div class="bg-white rounded-3xl overflow-hidden border border-sandborder shadow-md hover:shadow-xl transition group md:col-span-2 lg:col-span-1">
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg transition group md:col-span-2 lg:col-span-1">
                     <div class="relative aspect-video overflow-hidden bg-black">
                         <video controls class="w-full h-full object-cover">
                             <source src="{{ url_for('static', filename='img/video3.mp4') }}" type="video/mp4">
@@ -266,7 +295,7 @@
                         </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-charcoal mb-2">Área Externa & Spas</h3>
+                        <h3 class="text-lg font-bold text-espresso mb-2">Área Externa & Spas</h3>
                         <p class="text-slate text-sm leading-relaxed">Visão geral de projetos finalizados prontos para o lazer em família.</p>
                     </div>
                 </div>
@@ -278,23 +307,23 @@
     <section id="projetos" class="py-24 bg-linenbg border-t border-sandborder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-14">
-                <span class="text-aqua font-bold text-xs uppercase tracking-widest">Portfólio</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal mt-2">Obras & Instalações</h2>
-                <p class="text-slate mt-3 text-sm">Clique em qualquer imagem para ampliar os detalhes do acabamento.</p>
+                <span class="text-aqua font-semibold text-xs uppercase tracking-[0.2em]">Portfólio</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-espresso mt-2 tracking-tight">Obras & Instalações</h2>
+                <p class="text-slate mt-3 text-sm sm:text-base">Clique em qualquer imagem para ampliar os detalhes do acabamento.</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div onclick="openModal('{{ url_for('static', filename='img/2.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-md hover:shadow-xl transition">
-                    <img src="{{ url_for('static', filename='img/2.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div onclick="openModal('{{ url_for('static', filename='img/2.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-sm hover:shadow-lg transition bg-white">
+                    <img src="{{ url_for('static', filename='img/2.png') }}" alt="Projeto Deck e Hidro" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 </div>
-                <div onclick="openModal('{{ url_for('static', filename='img/4.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-md hover:shadow-xl transition">
-                    <img src="{{ url_for('static', filename='img/4.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div onclick="openModal('{{ url_for('static', filename='img/4.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-sm hover:shadow-lg transition bg-white">
+                    <img src="{{ url_for('static', filename='img/4.png') }}" alt="Projeto Área Externa" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 </div>
-                <div onclick="openModal('{{ url_for('static', filename='img/7.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-md hover:shadow-xl transition">
-                    <img src="{{ url_for('static', filename='img/7.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div onclick="openModal('{{ url_for('static', filename='img/7.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-sm hover:shadow-lg transition bg-white">
+                    <img src="{{ url_for('static', filename='img/7.png') }}" alt="Projeto Spa e Madeira" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 </div>
-                <div onclick="openModal('{{ url_for('static', filename='img/9.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-md hover:shadow-xl transition">
-                    <img src="{{ url_for('static', filename='img/9.png') }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div onclick="openModal('{{ url_for('static', filename='img/9.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-sm hover:shadow-lg transition bg-white">
+                    <img src="{{ url_for('static', filename='img/9.png') }}" alt="Projeto Pergolado e Lazer" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 </div>
             </div>
         </div>
@@ -303,7 +332,7 @@
     <!-- FOOTER -->
     <footer id="contato" class="bg-charcoal py-12 text-center text-gray-300 text-sm">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
-            <p class="text-white font-bold tracking-wider">DECK <span class="wood-amp font-black">&</span> ART — HIDROMASSAGEM & LAZER</p>
+            <p class="font-brand text-white font-bold tracking-wider">DECK <span class="wood-amp font-extrabold">&</span> ART — HIDROMASSAGEM & LAZER</p>
             <div class="flex items-center gap-6 mt-2">
                 <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="text-gray-300 hover:text-pink-400 transition flex items-center gap-2">
                     <i class="fa-brands fa-instagram text-xl text-pink-500"></i> Siga no Instagram
