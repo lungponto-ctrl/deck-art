@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin | Deck & Art</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f7f5f0; color: #262b2d; font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    {% if modo == 'login' %}
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-white rounded-3xl border border-[#e2dcd0] shadow-lg p-8">
+            <div class="text-center mb-6">
+                <span class="text-xs font-semibold uppercase tracking-widest text-[#1c7c94]">Área Restrita</span>
+                <h1 class="text-2xl font-bold text-[#4a2c18] mt-1">Deck & Art — Admin</h1>
+                <p class="text-sm text-[#5c6468] mt-1">Acesse para aprovar fotos e comentários de clientes.</p>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, msg in messages %}
+                    <div class="mb-4 p-3 rounded-xl text-sm {{ 'bg-red-50 text-red-700 border border-red-200' if category == 'erro' else 'bg-emerald-50 text-emerald-700 border border-emerald-200' }}">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+            {% endwith %}
+
+            <form method="POST" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-[#5c6468] mb-1">Usuário</label>
+                    <input type="text" name="usuario" required class="w-full px-4 py-3 rounded-xl border border-[#e2dcd0] focus:outline-none focus:border-[#8b4c24]">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-[#5c6468] mb-1">Senha</label>
+                    <input type="password" name="senha" required class="w-full px-4 py-3 rounded-xl border border-[#e2dcd0] focus:outline-none focus:border-[#8b4c24]">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-[#8b4c24] hover:bg-[#c86d31] text-white font-semibold transition">
+                    Entrar no Painel
+                </button>
+            </form>
+
+            <div class="text-center mt-6">
+                <a href="{{ url_for('index') }}" class="text-xs text-[#5c6468] hover:text-[#4a2c18]">← Voltar para o site</a>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- TOPO DO PAINEL -->
+    <header class="bg-white border-b border-[#e2dcd0] sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="font-bold text-lg text-[#4a2c18]">DECK & ART</span>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-[#ede8df] text-[#8b4c24] font-semibold">Moderação</span>
+            </div>
+            <div class="flex items-center gap-4 text-sm">
+                <a href="{{ url_for('index') }}" target="_blank" class="text-[#1c7c94] hover:underline font-medium">Ver Site</a>
+                <a href="{{ url_for('admin_logout') }}" class="px-3.5 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-10 space-y-12">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, msg in messages %}
+                <div class="p-4 rounded-xl text-sm {{ 'bg-red-50 text-red-700 border border-red-200' if category == 'erro' else 'bg-emerald-50 text-emerald-700 border border-emerald-200' }}">
+                    {{ msg }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+
+        <!-- PENDENTES DE APROVAÇÃO -->
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-[#4a2c18]">Aguardando Aprovação ({{ pendentes|length }})</h2>
+                    <p class="text-sm text-[#5c6468]">Revise as fotos e comentários antes de aparecerem no site.</p>
+                </div>
+            </div>
+
+            {% if pendentes %}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for item in pendentes %}
+                <div class="bg-white rounded-2xl border border-[#e2dcd0] overflow-hidden shadow-sm flex flex-col">
+                    <div class="h-56 bg-[#ede8df]">
+                        <img src="{{ url_for('static', filename='uploads/' + item['imagem']) }}" alt="Foto enviada por {{ item['nome'] }}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-[#1c7c94]">{{ item['servico'] }}</span>
+                            <h3 class="text-lg font-bold text-[#4a2c18] mt-0.5">{{ item['nome'] }}</h3>
+                            <p class="text-sm text-[#5c6468] mt-2 leading-relaxed">"{{ item['comentario'] }}"</p>
+                        </div>
+                        <div class="flex gap-2 pt-2 border-t border-[#e2dcd0]">
+                            <form method="POST" action="{{ url_for('admin_aprovar', item_id=item['id']) }}" class="flex-1">
+                                <button type="submit" class="w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition">
+                                    <i class="fa-solid fa-check mr-1"></i> Aprovar
+                                </button>
+                            </form>
+                            <form method="POST" action="{{ url_for('admin_excluir', item_id=item['id']) }}" onsubmit="return confirm('Excluir este envio permanentemente?');">
+                                <button type="submit" class="px-3.5 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold transition">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="bg-white rounded-2xl border border-[#e2dcd0] p-8 text-center text-sm text-[#5c6468]">
+                Nenhum envio pendente no momento.
+            </div>
+            {% endif %}
+        </section>
+
+        <!-- JÁ PUBLICADOS NO SITE -->
+        <section>
+            <h2 class="text-2xl font-bold text-[#4a2c18] mb-6">Publicados no Site ({{ aprovados|length }})</h2>
+
+            {% if aprovados %}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for item in aprovados %}
+                <div class="bg-white rounded-2xl border border-[#e2dcd0] overflow-hidden shadow-sm flex flex-col">
+                    <div class="h-48 bg-[#ede8df]">
+                        <img src="{{ url_for('static', filename='uploads/' + item['imagem']) }}" alt="Foto de {{ item['nome'] }}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-[#8b4c24]">{{ item['servico'] }}</span>
+                            <h3 class="text-lg font-bold text-[#4a2c18] mt-0.5">{{ item['nome'] }}</h3>
+                            <p class="text-sm text-[#5c6468] mt-2 leading-relaxed">"{{ item['comentario'] }}"</p>
+                        </div>
+                        <div class="flex gap-2 pt-2 border-t border-[#e2dcd0]">
+                            <form method="POST" action="{{ url_for('admin_ocultar', item_id=item['id']) }}" class="flex-1">
+                                <button type="submit" class="w-full py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-semibold transition">
+                                    Ocultar do Site
+                                </button>
+                            </form>
+                            <form method="POST" action="{{ url_for('admin_excluir', item_id=item['id']) }}" onsubmit="return confirm('Excluir este depoimento permanentemente?');">
+                                <button type="submit" class="px-3.5 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold transition">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="bg-white rounded-2xl border border-[#e2dcd0] p-8 text-center text-sm text-[#5c6468]">
+                Ainda não há fotos/comentários aprovados para exibição.
+            </div>
+            {% endif %}
+        </section>
+
+        <!-- GESTÃO DE FOTOS E VÍDEOS DO PORTFÓLIO -->
+        <section id="midias" class="pt-6 border-t border-[#e2dcd0] space-y-8">
+            <div>
+                <h2 class="text-2xl font-bold text-[#4a2c18]">Adicionar Foto ou Vídeo do Trabalho</h2>
+                <p class="text-sm text-[#5c6468]">Publique novos registros de obras diretamente na galeria ou na seção de vídeos do site.</p>
+            </div>
+
+            <form method="POST" action="{{ url_for('admin_nova_midia') }}" enctype="multipart/form-data" class="bg-white rounded-3xl border border-[#e2dcd0] p-6 sm:p-8 shadow-sm space-y-4">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-[#5c6468] mb-1">Título do Trabalho</label>
+                        <input type="text" name="titulo" required maxlength="100" placeholder="Ex.: Spa 6 lugares com Deck em Ipê" class="w-full px-4 py-3 rounded-xl bg-[#f7f5f0] border border-[#e2dcd0] text-sm focus:outline-none focus:border-[#8b4c24]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-[#5c6468] mb-1">Arquivo (Foto ou Vídeo)</label>
+                        <input type="file" name="arquivo" accept=".jpg,.jpeg,.png,.webp,.mp4,.mov,.webm" required class="w-full text-sm text-[#5c6468] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#ede8df] file:text-[#4a2c18] hover:file:bg-[#e2dcd0]">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-[#5c6468] mb-1">Descrição Curta</label>
+                    <input type="text" name="descricao" maxlength="250" placeholder="Ex.: Acabamento impermeabilizado e iluminação embutida." class="w-full px-4 py-3 rounded-xl bg-[#f7f5f0] border border-[#e2dcd0] text-sm focus:outline-none focus:border-[#8b4c24]">
+                </div>
+
+                <button type="submit" class="px-7 py-3 rounded-xl bg-[#8b4c24] hover:bg-[#c86d31] text-white font-semibold text-sm transition">
+                    <i class="fa-solid fa-plus mr-1.5"></i> Publicar no Site
+                </button>
+            </form>
+
+            {% if midias %}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for m in midias %}
+                <div class="bg-white rounded-2xl border border-[#e2dcd0] overflow-hidden shadow-sm flex flex-col">
+                    <div class="h-48 bg-[#262b2d] flex items-center justify-center overflow-hidden">
+                        {% if m['tipo'] == 'imagem' %}
+                            <img src="{{ url_for('static', filename='uploads/' + m['arquivo']) }}" alt="{{ m['titulo'] }}" class="w-full h-full object-cover">
+                        {% else %}
+                            <video src="{{ url_for('static', filename='uploads/' + m['arquivo']) }}" controls preload="metadata" class="w-full h-full object-cover"></video>
+                        {% endif %}
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider {{ 'text-[#1c7c94]' if m['tipo'] == 'imagem' else 'text-[#8b4c24]' }}">
+                                {{ 'Foto na Galeria' if m['tipo'] == 'imagem' else 'Vídeo em Destaque' }}
+                            </span>
+                            <h3 class="text-base font-bold text-[#4a2c18] mt-0.5">{{ m['titulo'] }}</h3>
+                            <p class="text-xs text-[#5c6468] mt-1">{{ m['descricao'] }}</p>
+                        </div>
+                        <div class="pt-2 border-t border-[#e2dcd0] flex justify-end">
+                            <form method="POST" action="{{ url_for('admin_excluir_midia', midia_id=m['id']) }}" onsubmit="return confirm('Remover este item do site?');">
+                                <button type="submit" class="px-3.5 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold transition">
+                                    <i class="fa-solid fa-trash mr-1"></i> Excluir
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </section>
+    </main>
+    {% endif %}
+
+</body>
+</html>

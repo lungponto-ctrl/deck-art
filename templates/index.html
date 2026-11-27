@@ -89,6 +89,7 @@
                 <a href="#servicos" class="hover:text-espresso transition">Serviços</a>
                 <a href="#transformacao" class="hover:text-espresso transition">Antes & Depois</a>
                 <a href="#projetos" class="hover:text-espresso transition">Galeria</a>
+                <a href="#depoimentos" class="hover:text-espresso transition">Clientes</a>
                 <!-- Link do Instagram na Navbar -->
                 <a href="https://www.instagram.com/deckeart.hidromassagem" target="_blank" class="hover:text-pink-600 transition flex items-center gap-1.5 text-slate">
                     <i class="fa-brands fa-instagram text-lg text-pink-600"></i> Instagram
@@ -253,7 +254,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO DE VÍDEOS EM DESTAQUE (3 VÍDEOS) -->
+    <!-- SEÇÃO DE VÍDEOS EM DESTAQUE -->
     <section class="py-24 bg-sandbg border-t border-sandborder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
@@ -304,6 +305,22 @@
                         <p class="text-slate text-sm leading-relaxed">Visão geral de projetos finalizados prontos para o lazer em família.</p>
                     </div>
                 </div>
+
+                <!-- Vídeos adicionados pelo Admin -->
+                {% for v in videos_extra %}
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg transition group">
+                    <div class="relative aspect-video overflow-hidden bg-black">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="{{ url_for('static', filename='uploads/' + v['arquivo']) }}">
+                            Seu navegador não suporta vídeos em HTML5.
+                        </video>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-espresso mb-2">{{ v['titulo'] }}</h3>
+                        <p class="text-slate text-sm leading-relaxed">{{ v['descricao'] }}</p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -330,6 +347,90 @@
                 <div onclick="openModal('{{ url_for('static', filename='img/9.png') }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-sm hover:shadow-lg transition bg-white">
                     <img src="{{ url_for('static', filename='img/9.png') }}" alt="Projeto Pergolado e Lazer" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 </div>
+
+                <!-- Fotos adicionadas pelo Admin -->
+                {% for f in fotos_extra %}
+                <div onclick="openModal('{{ url_for('static', filename='uploads/' + f['arquivo']) }}')" class="cursor-pointer group relative rounded-2xl overflow-hidden aspect-square border-4 border-white shadow-sm hover:shadow-lg transition bg-white">
+                    <img src="{{ url_for('static', filename='uploads/' + f['arquivo']) }}" alt="{{ f['titulo'] }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTES SATISFEITOS & ENVIO DE FOTO -->
+    <section id="depoimentos" class="py-24 bg-sandbg border-t border-sandborder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-aqua font-semibold text-xs uppercase tracking-[0.2em]">Clientes Satisfeitos</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-espresso mt-2 tracking-tight">Projetos na Casa dos Nossos Clientes</h2>
+                <p class="text-slate mt-3 text-sm sm:text-base">Já realizou seu projeto com a Deck & Art? Compartilhe uma foto do seu espaço pronto e conte como foi sua experiência.</p>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, msg in messages %}
+                    <div class="max-w-2xl mx-auto mb-8 p-4 rounded-2xl text-sm text-center font-medium {{ 'bg-red-50 text-red-700 border border-red-200' if category == 'erro' else 'bg-emerald-50 text-emerald-800 border border-emerald-200' }}">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+            {% endwith %}
+
+            {% if depoimentos %}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7 mb-16">
+                {% for item in depoimentos %}
+                <div class="bg-white rounded-2xl overflow-hidden border border-sandborder shadow-sm hover:shadow-lg transition flex flex-col">
+                    <div onclick="openModal('{{ url_for('static', filename='uploads/' + item['imagem']) }}')" class="cursor-pointer h-56 overflow-hidden bg-linenbg">
+                        <img src="{{ url_for('static', filename='uploads/' + item['imagem']) }}" alt="Projeto de {{ item['nome'] }}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <p class="text-slate text-sm leading-relaxed italic mb-4">"{{ item['comentario'] }}"</p>
+                        <div class="pt-3 border-t border-sandborder flex items-center justify-between">
+                            <span class="font-bold text-espresso text-sm">{{ item['nome'] }}</span>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-aqua">{{ item['servico'] }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- FORMULÁRIO DE ENVIO -->
+            <div class="max-w-2xl mx-auto bg-white rounded-3xl border border-sandborder shadow-sm p-8">
+                <h3 class="text-xl font-bold text-espresso mb-1">Envie a foto do seu projeto</h3>
+                <p class="text-sm text-slate mb-6">Seu envio passará por uma rápida validação antes de aparecer no site.</p>
+
+                <form action="{{ url_for('enviar_depoimento') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate mb-1">Seu Nome</label>
+                            <input type="text" name="nome" required maxlength="80" placeholder="Ex.: Carlos Mendes" class="w-full px-4 py-3 rounded-xl bg-sandbg border border-sandborder text-sm focus:outline-none focus:border-wood">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate mb-1">Projeto Realizado</label>
+                            <select name="servico" required class="w-full px-4 py-3 rounded-xl bg-sandbg border border-sandborder text-sm focus:outline-none focus:border-wood">
+                                <option value="Hidromassagem & Deck">Hidromassagem & Deck</option>
+                                <option value="Hidromassagem">Hidromassagem</option>
+                                <option value="Deck de Madeira">Deck de Madeira</option>
+                                <option value="Piscina & Ducha">Piscina & Ducha</option>
+                                <option value="Pergolado">Pergolado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-slate mb-1">Foto do seu espaço pronto (JPG, PNG ou WEBP até 5MB)</label>
+                        <input type="file" name="foto" accept=".jpg,.jpeg,.png,.webp" required class="w-full text-sm text-slate file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-linenbg file:text-espresso hover:file:bg-sandborder">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-slate mb-1">Seu Comentário</label>
+                        <textarea name="comentario" rows="3" required maxlength="500" placeholder="Conte o que achou do atendimento, acabamento e resultado..." class="w-full px-4 py-3 rounded-xl bg-sandbg border border-sandborder text-sm focus:outline-none focus:border-wood"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-wood hover:bg-woodlight text-white font-semibold text-sm transition shadow-sm">
+                        Enviar Foto e Avaliação
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -344,6 +445,9 @@
                 </a>
             </div>
             <p class="text-xs text-gray-400 mt-2">© 2026 Deck & Art. Todos os direitos reservados.</p>
+            <a href="{{ url_for('admin_painel') }}" class="text-[11px] text-gray-500 hover:text-gray-300 transition">
+                Área Administrativa
+            </a>
         </div>
     </footer>
 
